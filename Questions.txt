@@ -1,0 +1,27 @@
+How would you monitor the pipeline and ensure data integrity?
+Monitoring the Pipeline: Monitoring can be achieved through a combination of logging, metrics collection, and alerting. For logging, Python's built-in logging module can be used to log significant events, errors, and system information at various points in the pipeline. For metrics collection, tools like Prometheus can be integrated to collect and store metrics related to API response times, database insert rates, and error rates. Grafana can then be used to create dashboards for visualizing these metrics in real-time. Alerting rules can be set up in Grafana or Prometheus to notify operators via email, Slack, or other channels when certain thresholds are exceeded, indicating potential issues with the pipeline.
+
+Ensuring Data Integrity: To ensure data integrity, several strategies can be employed:
+
+Input Validation: Validate the data fetched from the CoinGecko API for correctness and completeness before processing and storage.
+Transaction Management: Use database transactions to ensure that data operations are completed successfully before committing them to the database. This approach helps in maintaining consistency, especially in case of errors that might require rollback.
+Checksums and Hashes: For critical data, consider storing checksums or hashes to verify that the data has not been altered or corrupted over time.
+Database Constraints: Use database constraints such as unique constraints, foreign keys, and check constraints to enforce data integrity at the database level.
+How would you address scalability and performance?
+Scalability:
+
+Database Sharding: Distribute data across multiple database instances to spread the load, reducing the burden on any single database server.
+Load Balancing: For the API requests, implement a load-balanced set of worker instances that can fetch data in parallel, distributing the workload evenly across the instances.
+Caching: Implement caching for frequently accessed data to reduce the number of database reads, which can significantly improve response times and reduce database load.
+Performance:
+
+Optimize SQL Queries: Ensure that SQL queries are optimized for performance, making use of indexes to speed up data retrieval.
+Asynchronous Processing: Utilize asynchronous programming models for data fetching and processing to improve the throughput of the pipeline.
+Resource Allocation: On the infrastructure level, ensure that the database and application servers have adequate resources (CPU, memory, I/O) to handle the workload. Utilize profiling tools to identify and optimize bottlenecks.
+Trade-offs you had to choose when doing this challenge
+During this challenge, several trade-offs were made, primarily due to the constraints of developing on a personal laptop that was unable to handle large input requests efficiently:
+
+Simplicity over Complexity: Opted for a more straightforward implementation of the data fetching and processing logic to keep the system's resource usage minimal. This choice meant sacrificing some potential features, such as more complex data analysis and transformation capabilities.
+Batch Processing: Instead of processing data in real-time, which could overwhelm my laptop's resources, data fetching was limited to less frequent intervals. While this approach reduces the system's real-time responsiveness, it ensures that the pipeline can operate within the available resources.
+Cloud Services Consideration: Given more time and resources, a cloud-based solution would be considered to leverage managed services for scalability and performance (e.g., using AWS RDS for the database and AWS Lambda for data processing). This shift would allow for better handling of large input requests and more sophisticated monitoring and alerting capabilities.
+Overall, the focus was on building a reliable and functional pipeline within the constraints of the development environment, with an eye towards scalability and performance improvements that could be made with access to more robust infrastructure.
