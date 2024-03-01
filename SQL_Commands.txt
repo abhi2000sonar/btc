@@ -1,0 +1,18 @@
+CREATE TABLE ticks2 (
+  id SERIAL PRIMARY KEY,
+  timestamp timestamptz NOT NULL,
+  open NUMERIC NOT NULL,
+  high NUMERIC NOT NULL, 
+  low NUMERIC NOT NULL,
+  close NUMERIC NOT NULL
+);
+
+CREATE MATERIALIZED VIEW daily_bars AS
+SELECT 
+  date_trunc('day', timestamp) AS bar_time,
+  MIN(low) AS low,
+  MAX(high) AS high,
+  FIRST(open) AS open,
+  LAST(close) AS close
+FROM ticks2
+GROUP BY date_trunc('day', timestamp);
