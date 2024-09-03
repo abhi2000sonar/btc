@@ -1,6 +1,6 @@
-# Luxor Data Engineer Coding Challenge
+# Real-Time Bitcoin Price Monitoring and Alert System
 
-This project is designed to meet the requirements of the Luxor Data Engineer Coding Challenge. It includes a pipeline that fetches BTC OHLC price data from CoinGecko's API once per second, stores the data in a PostgreSQL database, and implements an alert system for significant price changes.
+It includes a pipeline that fetches BTC OHLC price data from CoinGecko's API once per second, stores the data in a PostgreSQL database, and implements an alert system for significant price changes.
 
 ## Getting Started
 
